@@ -63,14 +63,15 @@ def find_mediana():
 # 4 - Moda
 def find_moda():
     lista_int = list(map(int, input("digite valores para descobrir a moda dos dados: ").split()))
-    moda = 0
-    freq_moda = 0
-    pos2 = lista_int[0]
-    for pos1 in lista_int:
-        if pos1 == pos2:
-            freq_moda += 1
-        for pos2 in lista_int:
-            if pos2 == pos1:
-                moda = pos2
+    modas_freq = {}
+    for n in lista_int:
+        if n in modas_freq:
+            modas_freq[n] += 1
+        else:
+            modas_freq[n] = 1
+
+    freq_moda = max(modas_freq.values())
+    moda = [num for num, freq in modas_freq.items() if freq == freq_moda]
+
     print(f'{moda} é a moda do conjunto de dados e aparece {freq_moda} vezes')
 # find_moda()

@@ -1,11 +1,9 @@
 # Classificação de uma sequência de valores
-from collections import Counter
 
 
 # Simetria, Assimetria negativa e positiva
 def classificar_assimetria():
     x = 0
-    n = 0
     valores_int = list(map(int, input("digite os valores do conjunto de dados: ").split()))
     for valor in valores_int:
         x += valor
@@ -33,16 +31,20 @@ def classificar_assimetria():
 # Amodal, Unimodal e multimodal
 def classificar_moda():
     lista_int = list(map(int, input("digite valores para descobrir a moda dos dados: ").split()))
-    contagem = Counter(lista_int)
+    dict_int = {}
+    for elemento in lista_int:
+        if elemento in dict_int:
+            dict_int[elemento] += 1
+        else:
+            dict_int[elemento] = 1
 
-    max_frequencia = max(contagem.values())
-
+    max_frequencia = max(dict_int.values())
     modas = []
-    for num, freq in contagem.items():
+    for num, freq in dict_int.items():
         if freq == max_frequencia:
             modas.append(num)
 
-    if len(modas) == len(contagem):
+    if len(modas) == len(dict_int):
         classificacao = "Amodal"
     elif len(modas) == 1:
         classificacao = "Unimodal"
